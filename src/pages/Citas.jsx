@@ -49,7 +49,7 @@ const Citas = () => {
       </div>
 
       <h1 className="font-bold text-center mt-0 text-3xl">
-        Nails & Beauty <br /> <span className="text-sm">By Paola Juárez</span>
+        Paola Studio <br /> {/* <span className="text-sm">By Paola Juárez</span> */}
       </h1>
 
       {/* Inicia Contenedor Cafe */}

@@ -31,7 +31,7 @@ const MantenimientoServicios = () => {
   return (
     <>
       <h1 className="font-bold text-center mt-5 text-3xl">
-        Nails & Beauty <br /> <span className="text-sm">By Paola Juárez</span>
+        Paola Studio <br /> {/* <span className="text-sm">By Paola Juárez</span> */}
       </h1>
 
       <div

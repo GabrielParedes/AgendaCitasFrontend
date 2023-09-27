@@ -33,7 +33,7 @@ const FormularioUsuario = () => {
           // Muestra una alerta de éxito
           Swal.fire({
             icon: "success",
-            title: "Cliente agregado",
+            title: "Usuario agregado",
             showConfirmButton: false,
             timer: 1500, // La alerta se cerrará automáticamente después de 1.5 segundos
           });

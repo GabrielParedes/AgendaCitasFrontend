@@ -115,7 +115,7 @@ const FormularioServicios = () => {
           <input
             id="nombre"
             type="text"
-            placeholder="Ingresa tú nombre"
+            placeholder="Ingresa nombre"
             className="border-2 w-full p-1 mt-1 rounded-md"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
@@ -129,7 +129,7 @@ const FormularioServicios = () => {
           <input
             id="apellido"
             type="text"
-            placeholder="Ingresa tú apellido"
+            placeholder="Ingresa apellido"
             className="border-2 w-full p-1 mt-1 rounded-md"
             value={apellido}
             onChange={(e) => setApellido(e.target.value)}
@@ -143,7 +143,7 @@ const FormularioServicios = () => {
           <input
             id="telefono"
             type="number"
-            placeholder="Ingresa tú télefono"
+            placeholder="Ingresa télefono"
             className="border-2 w-full p-1 mt-1 rounded-md"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}

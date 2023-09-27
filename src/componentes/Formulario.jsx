@@ -66,7 +66,7 @@ const Formulario = () => {
           <input
             id="usuario"
             type="text"
-            placeholder="Ingresa tú usuario"
+            placeholder="Ingresa tu usuario"
             className="border-2 w-full p-2 mt-2 rounded-md"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
@@ -80,7 +80,7 @@ const Formulario = () => {
           <input
             id="password"
             type="password"
-            placeholder="Ingresa tú contraseña"
+            placeholder="Ingresa tu contraseña"
             className="border-2 w-full p-2 mt-2 rounded-md"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
