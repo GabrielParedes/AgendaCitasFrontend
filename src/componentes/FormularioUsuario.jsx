@@ -21,7 +21,7 @@ const FormularioUsuario = () => {
       };
 
       // Hacer la petición POST al backend de Laravel
-      fetch("http://localhost:8000/api/crear-usuario", {
+      fetch("https://api-paolastudio.srv-sa.com/api/crear-usuario", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

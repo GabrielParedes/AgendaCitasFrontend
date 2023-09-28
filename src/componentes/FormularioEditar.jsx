@@ -39,7 +39,7 @@ const FormularioEditar = () => {
     console.log("Formulario enviado");
 
     // Hacer la petición POST al backend de Laravel
-    fetch(`http://localhost:8000/api/actualizar-cliente/${id}`, {
+    fetch(`https://api-paolastudio.srv-sa.com/api/actualizar-cliente/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

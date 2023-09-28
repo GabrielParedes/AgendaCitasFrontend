@@ -23,7 +23,7 @@ const FormularioCliente = () => {
       console.log("Formulario enviado");
 
       // Hacer la petición POST al backend de Laravel
-      fetch("http://localhost:8000/api/crear-cliente", {
+      fetch("https://api-paolastudio.srv-sa.com/api/crear-cliente", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

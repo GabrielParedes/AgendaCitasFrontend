@@ -21,7 +21,7 @@ const Formulario = () => {
 
     // Hacer la petición POST al backend de Laravel
     fetch(
-      `http://localhost:8000/api/login?usuario=${usuario}&contrasena=${password}`,
+      `https://api-paolastudio.srv-sa.com/api/login?usuario=${usuario}&contrasena=${password}`,
       {
         method: "POST",
         headers: {

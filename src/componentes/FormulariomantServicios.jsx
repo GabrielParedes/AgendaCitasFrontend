@@ -11,7 +11,7 @@ const FormulariomantServicios = () => {
 
   useEffect(() => {
     // Realizar la petición GET a la API de Laravel para obtener el listado de servicios
-    fetch("http://localhost:8000/api/listar-servicios")
+    fetch("https://api-paolastudio.srv-sa.com/api/listar-servicios")
       .then((response) => response.json())
       .then((data) => {
         // Actualizar el estado de los servicios con los datos recibidos
@@ -37,7 +37,7 @@ const FormulariomantServicios = () => {
       console.log("Formulario enviado");
 
       // Hacer la petición POST al backend de Laravel
-      fetch("http://localhost:8000/api/crear-servicio", {
+      fetch("https://api-paolastudio.srv-sa.com/api/crear-servicio", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const FormulariomantServicios = () => {
           });
 
           // Después de guardar, actualizar la tabla obteniendo los datos actualizados
-          fetch("http://localhost:8000/api/listar-servicios")
+          fetch("https://api-paolastudio.srv-sa.com/api/listar-servicios")
             .then((response) => response.json())
             .then((data) => {
               // Actualizar el estado de los servicios con los datos recibidos
@@ -82,7 +82,7 @@ const FormulariomantServicios = () => {
     console.log("recibiendo en eliminar Servicio", id);
     try {
       // Realiza la petición DELETE a tu API de Laravel para eliminar el servicios
-      await fetch(`http://localhost:8000/api/eliminar-servicio/${id}`, {
+      await fetch(`https://api-paolastudio.srv-sa.com/api/eliminar-servicio/${id}`, {
         method: "DELETE",
       });
 
@@ -117,7 +117,7 @@ const FormulariomantServicios = () => {
       // Hacer la petición PUT al backend de Laravel para editar el servicio
       try {
         const response = await fetch(
-          `http://localhost:8000/api/actualizar-servicio/${id}`,
+          `https://api-paolastudio.srv-sa.com/api/actualizar-servicio/${id}`,
           {
             method: "PUT",
             headers: {

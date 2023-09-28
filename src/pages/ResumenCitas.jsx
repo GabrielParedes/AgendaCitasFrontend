@@ -37,7 +37,7 @@ export const ResumenCitas = () => {
 
   useEffect(() => {
     // Realizar la petición GET a la API de Laravel para obtener el listado de servicios
-    fetch("http://localhost:8000/api/listar-citas")
+    fetch("https://api-paolastudio.srv-sa.com/api/listar-citas")
       .then((response) => response.json())
       .then((data) => {
         // Actualizar el estado de los servicios con los datos recibidos
@@ -56,7 +56,7 @@ export const ResumenCitas = () => {
     // Realizar la llamada a la API de Laravel para obtener los resultados de búsqueda
     // Reemplaza 'URL_DE_TU_API' con la URL de tu backend Laravel
     fetch(
-      `http://localhost:8000/api/buscar-citas?nombreCliente=${nombre}&servicio=${tipoCita}&fechaCita=${fecha}`
+      `https://api-paolastudio.srv-sa.com/api/buscar-citas?nombreCliente=${nombre}&servicio=${tipoCita}&fechaCita=${fecha}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -80,7 +80,7 @@ export const ResumenCitas = () => {
   const eliminarCita = async (cita) => {
     try {
       // Realiza la petición DELETE a tu API de Laravel para eliminar la cita
-      await fetch(`http://localhost:8000/api/eliminar-cita/${cita.id_cita}`, {
+      await fetch(`https://api-paolastudio.srv-sa.com/api/eliminar-cita/${cita.id_cita}`, {
         method: "DELETE",
       });
 

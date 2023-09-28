@@ -14,7 +14,7 @@ const FormularioServicios = () => {
 
   // Obtener los servicios para el select
   useEffect(() => {
-    fetch(`http://localhost:8000/api/listar-servicios`)
+    fetch(`https://api-paolastudio.srv-sa.com/api/listar-servicios`)
       .then((response) => response.json())
       .then((data) => {
         setServicios(data);
@@ -45,7 +45,7 @@ const FormularioServicios = () => {
       console.log("Formulario enviado");
 
       // Hacer la petición POST al backend de Laravel
-      fetch("http://localhost:8000/api/crear-cita", {
+      fetch("https://api-paolastudio.srv-sa.com/api/crear-cita", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -30,7 +30,7 @@ const AgendaContactos = () => {
 
   useEffect(() => {
     // Realizar la petición GET a la API de Laravel para obtener el listado de contactos
-    fetch("http://localhost:8000/api/listar-clientes")
+    fetch("https://api-paolastudio.srv-sa.com/api/listar-clientes")
       .then((response) => response.json())
       .then((data) => {
         // Actualizar el estado de los contactos con los datos recibidos
@@ -47,7 +47,7 @@ const AgendaContactos = () => {
     console.log("recibiendo en eliminarContacto", id);
     try {
       // Realiza la petición DELETE a tu API de Laravel para eliminar el contacto
-      await fetch(`http://localhost:8000/api/eliminar-cliente/${id}`, {
+      await fetch(`https://api-paolastudio.srv-sa.com/api/eliminar-cliente/${id}`, {
         method: "DELETE",
       });
       // Muestra una alerta de éxito
