@@ -54,7 +54,7 @@ const Citas = () => {
 
       {/* Inicia Contenedor Cafe */}
       <div
-        className="container mt-5 mx-auto h-[660px] md:h-[500px]  text-center rounded-[30px] shadow-md"
+        className="container mt-5 mx-auto h-[660px] md:w-[1000px] md:h-[500px]  text-center rounded-[30px] shadow-md"
         style={containerStyle}
       >
         <h1 className="text-white font-bold text-3xl mb-3 md:mb-0 border-b-2 border-white mx-5">

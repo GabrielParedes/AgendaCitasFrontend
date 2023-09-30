@@ -24,12 +24,8 @@ const imageStyle = {
 export const Index = () => {
   return (
     <>
-      <h1 className="font-bold text-center mt-5 text-3xl">
-        Paola Studio <br /> {/* <span className="text-sm">By Paola Juárez</span> */}
-      </h1>
-
       <div
-        className="container mt-10 mx-auto py-36 px-10 md:py-14 md:px-52 text-center rounded-[30px]"
+        className="container mt-10 mx-auto py-36 px-10 md:py-40 md:px-52 text-center rounded-[30px]"
         style={containerStyle}
       >
         {/* Segundo div con formulario */}
