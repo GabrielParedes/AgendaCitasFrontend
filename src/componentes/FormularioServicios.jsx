@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import Select from 'react-select'
 
 const FormularioServicios = () => {
   const [nombre, setNombre] = useState("");
@@ -12,6 +13,9 @@ const FormularioServicios = () => {
   const [guardar, setGuardar] = useState(false);
   const [error, setError] = useState(false);
 
+
+  const [clientes, setClientes] = useState([]);
+
   // Obtener los servicios para el select
   useEffect(() => {
     fetch(`https://api-paolastudio.srv-sa.com/api/listar-servicios`)
@@ -23,10 +27,32 @@ const FormularioServicios = () => {
       .catch((error) => {
         console.error("Error al obtener los servicios:", error);
       });
+
+    fetch(`https://api-paolastudio.srv-sa.com/api/listar-clientes`)
+      .then((response) => response.json())
+      .then((data) => {
+        let dataClientes = data.map(item => {
+          return {
+            value: item.id_cliente,
+            label: `${item.nombre} ${item.apellido}`,
+            ...item
+          }
+        })
+
+        setClientes(dataClientes);
+        console.log(data);
+        console.log(dataClientes);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los servicios:", error);
+      });
+
+
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevenir la recarga de la página por defecto al enviar el formulario
+    let existeCita = false
 
     if ([tipo, nombre, apellido, telefono, calendario, hora].includes("")) {
       setError(true);
@@ -43,37 +69,76 @@ const FormularioServicios = () => {
       };
 
       console.log("Formulario enviado");
+      console.log(formData)
 
-      // Hacer la petición POST al backend de Laravel
-      fetch("https://api-paolastudio.srv-sa.com/api/crear-cita", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
+      await fetch(
+        `https://api-paolastudio.srv-sa.com/api/buscar-citas?fechaCita=${formData.fechaCita}`
+      )
         .then((response) => response.json())
         .then((data) => {
-          console.log("datos devueltos", data);
-          setNombre("");
-          setApellido("");
-          setTelefono("");
-          setCalendario("");
-          setHora("");
-
-          // Muestra una alerta de éxito
-          Swal.fire({
-            icon: "success",
-            title: "Cita agregada",
-            showConfirmButton: false,
-            timer: 1500, // La alerta se cerrará automáticamente después de 1.5 segundos
-          });
+          console.log(data);
+          data.forEach(item => {
+            console.log(item)
+            console.log(new Date(`${item.fecha_cita} ${item.hora_cita}`).valueOf())
+            console.log('----')
+            console.log(new Date(`${formData.fechaCita} ${formData.horaCita}`).valueOf())
+            if (new Date(`${item.fecha_cita} ${item.hora_cita}`).valueOf() == new Date(`${formData.fechaCita} ${formData.horaCita}`).valueOf()) {
+              console.log("Ya existe una cita")
+              existeCita = true
+            }
+          })
         })
         .catch((error) => {
-          alert("Error al enviar el formulario:", error);
+          console.error("Error al obtener los resultados:", error);
         });
+
+      if (existeCita) {
+        Swal.fire({
+          icon: "warning",
+          title: "Ya existe una cita agendada a esta fecha y hora",
+        });
+      } else {
+        console.log("Se agrego cita")
+
+        // Hacer la petición POST al backend de Laravel
+        await fetch("https://api-paolastudio.srv-sa.com/api/crear-cita", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("datos devueltos", data);
+            setNombre("");
+            setApellido("");
+            setTelefono("");
+            setCalendario("");
+            setHora("");
+
+            // Muestra una alerta de éxito
+            Swal.fire({
+              icon: "success",
+              title: "Cita agregada",
+              showConfirmButton: false,
+              timer: 1500, // La alerta se cerrará automáticamente después de 1.5 segundos
+            });
+          })
+          .catch((error) => {
+            alert("Error al enviar el formulario:", error);
+          });
+      }
     }
   };
+
+  const handleChangeCliente = (value) => {
+    const { nombre, apellido, telefono } = value
+
+    setNombre(nombre)
+    setApellido(apellido)
+    setTelefono(telefono)
+  }
 
   return (
     <div className="w-full mt-2">
@@ -112,17 +177,29 @@ const FormularioServicios = () => {
           <label htmlFor="nombre" className="flex font-bold">
             Nombre
           </label>
-          <input
+          <Select
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={clientes[0]}
+            isDisabled={false}
+            isLoading={false}
+            isClearable={false}
+            isRtl={false}
+            isSearchable={true}
+            options={clientes}
+            onChange={(value) => handleChangeCliente(value)}
+          />
+          {/* <input
             id="nombre"
             type="text"
             placeholder="Ingresa nombre"
             className="border-2 w-full p-1 mt-1 rounded-md"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-          />
+          /> */}
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="apellido" className="flex font-bold">
             Apellido
           </label>
@@ -134,7 +211,7 @@ const FormularioServicios = () => {
             value={apellido}
             onChange={(e) => setApellido(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="mt-3">
           <label htmlFor="telefono" className="flex font-bold">
